@@ -14,15 +14,26 @@ class CreateTweetsTable extends Migration
     public function up()
     {
         Schema::create('tweets', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->increments('id');
             $table->string('content');
             $table->timestamps();
 
+            $table->integer('user_id')
+                ->unsigned()->nullable();
             $table->foreign('user_id')
-                    ->references('id')
-                    ->on('users');
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
+
+        $data = array(
+            array(
+                'user_id' => '1',
+                'content' => 'Alvejou a militância da mulher fenotipicamente negra com o intuito egoístico que transcendem a normalidade dos fatos. Julgou o caráter da mulher fenotipicamente negra ressignificando a conversa com inverdades.'
+            )
+        );
+        \DB::table('tweets')->insert($data);
     }
 
     /**

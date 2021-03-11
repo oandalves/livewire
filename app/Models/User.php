@@ -46,8 +46,8 @@ class User extends Authenticatable
      * 1 usuário - N tweets
      * 1 Tweet - 1 usuário
      */
-    public function twetts()
+    public function tweets()
     {
-        return $this->hasMany(tweet::class);
+        return $this->hasMany(Tweet::class);
     }
 }
