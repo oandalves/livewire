@@ -17,4 +17,9 @@
     @foreach ($tweets as $tweet)
         {{ $tweet->user->name }} - {{ $tweet->content }}. <br>
     @endforeach
+    <div>
+        <!-- Paginação do laravel -->
+        {{ $tweets->links() }}
+    </div>
+    <hr>
 </div>
